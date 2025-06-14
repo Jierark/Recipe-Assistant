@@ -15,14 +15,14 @@ class RecipeService:
     # Accessed via /api/recipes?query=
     def search_recipes(self,query: str):
         processed_query = self.nlp_agent.process_recipe_query(query)
+
         return self.search_recipes_parameterized(
-            query=processed_query["search_terms"],
             cuisine=processed_query["cuisine"],
             diet=processed_query["diet"],
             ingredients=processed_query["ingredients"],
         )
 
-    def search_recipes_parameterized(self, query, cuisine=None, diet=None, ingredients=None):
+    def search_recipes_parameterized(self, cuisine=None, diet=None, ingredients=None):
         prompt = f"Can you find recipes"
         if cuisine and cuisine != 'null':
             prompt += f" in {cuisine} cuisine"
@@ -37,6 +37,7 @@ class RecipeService:
             model="gpt-4.1-2025-04-14",
             messages=[{"role": "user", "content": prompt}]
         )
+        print("response received from recipe search")
         return response.choices[0].message.content
 
     def get_recipe_details(self, recipe_name: str):

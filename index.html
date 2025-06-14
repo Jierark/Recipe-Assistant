@@ -1,25 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Assistant</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Recipe Assistant</h1>
-        
-        <!-- Search Form -->
-        <div class="search-container">
-            <input type="text" id="searchQuery" placeholder="What would you like to cook?">
-            <button onclick="searchRecipes()">Search</button>
-        </div>
+        <header>
+            <h1>🍳 Recipe Assistant</h1>
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchQuery" 
+                    placeholder="What would you like to cook today?"
+                >
+                <button onclick="searchRecipes()">Search</button>
+            </div>
+        </header>
 
-        <!-- Recipe Results -->
-        <div id="recipeResults" class="results-container"></div>
+        <main>
+            <div id="loading" class="hidden">🔍 Searching for recipes...</div>
+            <div id="error" class="hidden error">⚠️ Something went wrong. Please try again.</div>
+            <div id="recipeResults" class="recipe-grid"></div>
+        </main>
     </div>
-    <script src="static/scripts.js"></script>
+    <script src="/static/scripts.js"></script>
 </body>
 </html>

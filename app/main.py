@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 from dotenv import load_dotenv
-from starlette.responses import FileResponse
-import os
+
 
 load_dotenv()
 
@@ -20,7 +21,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory='.', html=True), name="static")
+app.mount("/static", StaticFiles(directory='static'), name="static")
 
 #Imports all the routes
 from app.routes import recipe_routes
